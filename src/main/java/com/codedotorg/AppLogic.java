@@ -65,11 +65,13 @@ public class AppLogic {
      */
     public void removeProductFromCart() {
         Product selectedProduct = store.getProductsListView().getSelectionModel().getSelectedItem();
-
-
-
-
-
+            if (selectedProduct != null) {
+                store.updateInventory(selectedProduct);
+                store.updateProductsListView();
+                
+                cart.removeFromCart(selectedProduct);
+                cart.updateItemsListView();
+            }
     }
 
     /**
@@ -78,9 +80,7 @@ public class AppLogic {
      * @return the new total of all products in the cart
      */
     public double getNewTotal() {
-
-        
-        return 0.0;
+        return cart.getTotal();
     }
 
 }
